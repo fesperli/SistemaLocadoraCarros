@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SistemaLocadoraCarros
+namespace SistemaLocadoraCarros.Veiculo
 {
-    public abstract class Veiculo
+    public class Moto
     {
     }
 }
