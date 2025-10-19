@@ -14,16 +14,25 @@ namespace SistemaLocadoraCarros.Veiculo
         private string TipoCambio { get; set; }
         private string TipoVeiculo { get; set; }
 
-        public Carro (string marca, string modelo, string placa, int ano, string tipoveiculo, string tipocambio, string tipocombustivel) : base (placa, modelo, marca, ano) 
+        public Carro(string placa, string modelo, string marca, int ano, double valorDiaria, string tipocombustivel, string tipocambio, string tipoveiculo) : base(placa, modelo, marca, ano, valorDiaria)
         {
             TipoCombustivel = tipocombustivel;
             TipoCambio = tipocambio;
-            TipoVeiculo = tipocombustivel;
+            TipoVeiculo = tipoveiculo;
         }
 
+        public string GetTipoCombustivel() { return  TipoCombustivel; }
+        public string GetTipoCambio() { return TipoCambio; }
+        public string GetTipoVeiculo() { return TipoVeiculo; }
+
+        public void SetTipoCombustivel (string tipocombustivel) { TipoCombustivel = tipocombustivel;}
+        public void SetTipoCambio (string tipocambio) { TipoCambio = tipocambio;}
+        public void SetTipoVeiculo (string tipoveiculo) { TipoVeiculo = tipoveiculo;}
+        
         public override string ToString()
         {
-            return $"Categoria: {TipoVeiculo}, Combustivel: {TipoCombustivel}, Cambio: {TipoCambio}";
+            return base.ToString() +
+                $"Categoria: {TipoVeiculo}\n Combustivel: {TipoCombustivel}\n Cambio: {TipoCambio}";
         }
 
 
