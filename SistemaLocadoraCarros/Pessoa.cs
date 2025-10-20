@@ -10,18 +10,28 @@ namespace SistemaLocadoraCarros
     {
         private string Nome { get; set; }
         private string NumeroTel { get; set; }
-        private string Cpf { get; set; }
+        
         
 
-        public Pessoa(string nome, string numerotel, string cpf)
+        public Pessoa(string nome, string numerotel)
         {
             Nome = nome;
             NumeroTel = numerotel;
-            Cpf = cpf;
+           
         }
+        public string GetNome () { return Nome; }
+        public string GetNumeroTel () { return NumeroTel; }
+        
+
+        public void SetNome (string nome) { Nome = nome; }
+        public void SetNumeroTel (string numerotel) { NumeroTel = numerotel; }
+
         public override string ToString()
         {
-            return $"Nome: {Nome}, Telefone: {NumeroTel}, CPF: {Cpf}";
+            return $"\nNome: {Nome}\nTelefone: {NumeroTel}";
         }
+
+        
+
     }
 }

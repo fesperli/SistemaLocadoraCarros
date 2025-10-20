@@ -30,7 +30,7 @@ namespace SistemaLocadoraCarros.Veiculo
         public override string ToString()
         {
             return base.ToString() +
-                $"Quantidade de eixos: {QntEixos}\n Tipo de Carga: {TipoCarga}\n Comprimento(em Metros): {Comprimento}";
+                $"\nQuantidade de eixos: {QntEixos}\nTipo de Carga: {TipoCarga}\nComprimento(em Metros): {Comprimento}";
         }
 
 

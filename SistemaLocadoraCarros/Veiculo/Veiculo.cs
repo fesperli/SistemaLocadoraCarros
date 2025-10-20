@@ -13,6 +13,18 @@ namespace SistemaLocadoraCarros.Veiculo
         private string Marca { get; set; }
         private int Ano { get; set; }
         private double ValorDiaria { get; set; }
+       
+        public void RegistrarLocacao (Pessoa cliente, int dias)
+        {
+            Console.WriteLine("--Locacao--");
+            Console.WriteLine("Cliente :");
+            Console.WriteLine(cliente.ToString());
+                
+                double valorTotal = ValorDiaria * dias;
+            Console.WriteLine(this.ToString());
+            Console.WriteLine($"Quantidade de dias: {dias}");
+            Console.WriteLine($"Valor total: {valorTotal:F2}");
+        }
 
 
         public Veiculo(string placa, string modelo, string marca, int ano, double valorDiaria)
@@ -26,7 +38,7 @@ namespace SistemaLocadoraCarros.Veiculo
 
         public string GetPlaca() { return Placa; }
         public string GetModelo() { return Modelo; }
-        public string getMarca() { return Marca; }
+        public string GetMarca() { return Marca; }
         public int GetAno() { return Ano; }
         public double GetValorDiaria() { return ValorDiaria; }
 
@@ -38,7 +50,7 @@ namespace SistemaLocadoraCarros.Veiculo
 
         public override string ToString()
         {
-            return $"Placa: {Placa}\n Modelo: {Modelo}\n Marca: {Marca}\n Ano: {Ano}\n Valor da Diaria: {ValorDiaria}";
+            return $"Placa: {Placa}\nModelo: {Modelo}\nMarca: {Marca}\nAno: {Ano}\nValor da Diaria: {ValorDiaria}";
         }
 
     }

@@ -31,7 +31,7 @@ namespace SistemaLocadoraCarros.Veiculo
         public override string ToString()
         {
             return base.ToString() +
-                $"Cilindradas: {Cilindradas}\n Categoria: {TipoVeiculo}";
+                $"\nCilindradas: {Cilindradas}\nCategoria: {TipoVeiculo}";
         }
 
 
