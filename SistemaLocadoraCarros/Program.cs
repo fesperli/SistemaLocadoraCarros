@@ -6,7 +6,7 @@ using System.Collections.Generic;
 List<Pessoa> clientes = new List<Pessoa>();
 List<Veiculo> veiculos = new List<Veiculo>();
 
-string opcao;
+int op;
 do
 {
     Console.Clear();
@@ -17,52 +17,52 @@ do
     Console.WriteLine("4. Listar Clientes");
     Console.WriteLine("5. Listar Veículos");
     Console.WriteLine("0. Sair");
-    Console.Write("\nEscolha uma opção: ");
-    opcao = Console.ReadLine();
+    Console.WriteLine("\n Digite sua escolha: ");
+    op = int.Parse(Console.ReadLine());
 
-    switch (opcao)
+    switch (op)
     {
-        case "1":
+        case 1:
             CadastrarCliente();
             break;
-        case "2":
+        case 2:
             CadastrarVeiculo();
             break;
-        case "3":
+        case 3:
             RealizarLocacao();
             break;
-        case "4":
+        case 4:
             ListarClientes();
             break;
-        case "5":
+        case 5:
             ListarVeiculos();
             break;
-        case "0":
+        case 0:
             break;
         default:
-            Console.WriteLine("Opcao invalida.");
+            Console.WriteLine("opcao errada");
             break;
     }
 
-    if (opcao != "0")
+    if (op != 0)
     {
         Console.ReadKey();
     }
 
-} while (opcao != "0");
+} while (op != 0);
 void CadastrarCliente()
 {
     Console.WriteLine("\nCadastrar cliente:");
     Console.Write("1 - Fisico\n2 - Juridico");
     Console.WriteLine("\n");
-    string tipo = Console.ReadLine();
+    int tipo = int.Parse(Console.ReadLine());
 
     Console.Write("Nome: ");
     string nome = Console.ReadLine();
     Console.Write("Telefone: ");
     string telefone = Console.ReadLine();
 
-    if (tipo == "1")
+    if (tipo == 1)
     {
         Console.Write("CPF: ");
         string cpf = Console.ReadLine();
@@ -70,7 +70,7 @@ void CadastrarCliente()
         string cnh = Console.ReadLine();
         clientes.Add(new ClienteFisico(nome, telefone, cpf, cnh));
     }
-    else if (tipo == "2")
+    else if (tipo == 2)
     {
         Console.Write("CNPJ: ");
         string cnpj = Console.ReadLine();
@@ -87,7 +87,7 @@ void CadastrarVeiculo()
     Console.WriteLine("Cadastrar Veículo:");
     Console.Write("1 - Carro\n2 - Moto\n3 - Caminhao");
     Console.WriteLine("\n");
-    string tipo = Console.ReadLine();
+    int escolha = int.Parse(Console.ReadLine());
 
     Console.Write("Placa: ");
     string placa = Console.ReadLine();
@@ -100,8 +100,8 @@ void CadastrarVeiculo()
     Console.Write("Valor da diaria: ");
     double diaria = double.Parse(Console.ReadLine());
 
-    if (tipo == "1")
-    {
+    if (escolha == 1) { 
+    
         Console.Write("Tipo de Combustivel: ");
         string combustivel = Console.ReadLine();
         Console.Write("Tipo de Cambio: ");
@@ -111,7 +111,7 @@ void CadastrarVeiculo()
 
         veiculos.Add(new Carro(placa, modelo, marca, ano, diaria, combustivel, cambio, categoria));
     }
-    else if (tipo == "2")
+    else if (escolha == 2)
     {
         Console.Write("Cilindradas: ");
         string cilindradas = Console.ReadLine();
@@ -120,7 +120,7 @@ void CadastrarVeiculo()
 
         veiculos.Add(new Moto(placa, modelo, marca, ano, diaria, cilindradas, categoria));
     }
-    else if (tipo == "3")
+    else if (escolha == 3)
     {
         Console.Write("Quantidade de Eixos: ");
         int eixos = int.Parse(Console.ReadLine());
@@ -150,19 +150,19 @@ void RealizarLocacao()
     {
         Console.WriteLine($"{i + 1}. {clientes[i].GetNome()}");
     }
-    int nmrCliente = int.Parse(Console.ReadLine()) - 1;
+    int clientescadastrados = int.Parse(Console.ReadLine()) - 1;
 
     Console.WriteLine("Escolha o veiculo:");
     for (int i = 0; i < veiculos.Count; i++)
     {
         Console.WriteLine($"{i + 1}. {veiculos[i].GetModelo()} -  {veiculos[i].GetMarca()} - {veiculos[i].GetPlaca()}");
     }
-    int nmrVeiculo = int.Parse(Console.ReadLine()) - 1;
+    int veiculoscadastrados = int.Parse(Console.ReadLine()) - 1;
 
     Console.Write("Quantidade de dias da locacao: ");
     int dias = int.Parse(Console.ReadLine());
 
-    veiculos[nmrVeiculo].RegistrarLocacao(clientes[nmrCliente], dias);
+    veiculos[veiculoscadastrados].RegistrarLocacao(clientes[clientescadastrados], dias);
 }
 
 void ListarClientes()
