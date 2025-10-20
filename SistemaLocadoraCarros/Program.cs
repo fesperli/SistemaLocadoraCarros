@@ -1,117 +1,112 @@
 ﻿using SistemaLocadoraCarros;
 using SistemaLocadoraCarros.Veiculo;
-using System;
-using System.Collections.Generic;
+using System.ComponentModel.Design;
 
 List<Pessoa> clientes = new List<Pessoa>();
 List<Veiculo> veiculos = new List<Veiculo>();
+
+
 void CadastrarCliente()
 {
-    Console.WriteLine("1 - Cadastrar cliente: \n 1 - Pessoa Fisica\n 2 - Pessoa Juridica");
+    Console.WriteLine("1 - Cadastrar cliente\n 1 - Cliente Fisico\n 2 - Cliente Juridico");
     int op = int.Parse(Console.ReadLine());
-    Console.Write("Nome: ");
+    Console.WriteLine("Nome: ");
     string nome = Console.ReadLine();
-    Console.Write("Telefone: ");
+    Console.WriteLine("Telefone: ");
     string numerotel = Console.ReadLine();
 
     if (op == 1)
     {
-        Console.Write("CPF: ");
+        Console.WriteLine("CPF: ");
         string cpf = Console.ReadLine();
-        Console.Write("CNH: ");
+        Console.WriteLine("CNH: ");
         string cnh = Console.ReadLine();
         clientes.Add(new ClienteFisico(nome, numerotel, cpf, cnh));
     }
-    else if (op == 2)
-    {
-        Console.Write("CNPJ: ");
+    else if (op == 2) {
+        Console.WriteLine("CNPJ: ");
         string cnpj = Console.ReadLine();
         clientes.Add(new ClienteJuridico(nome, numerotel, cnpj));
-    }
-    else
+    } else
     {
         Console.WriteLine("tipo de cliente invalido");
     }
 }
 
-void CadastrarVeiculo()
+void CadastrarVeiculo ()
 {
-    Console.WriteLine("Cadastrar Veículo:");
-    Console.Write("1 - Carro\n2 - Moto\n3 - Caminhao");
+    Console.WriteLine("Cadastrar Veiculo: ");
+    Console.WriteLine("1 - Carro\n 2 - Moto\n 3 - Caminhao");
     Console.WriteLine("\n");
     int op = int.Parse(Console.ReadLine());
 
-    Console.Write("Placa: ");
+    Console.WriteLine("Placa: ");
     string placa = Console.ReadLine();
-    Console.Write("Modelo: ");
+    Console.WriteLine("Modelo: ");
     string modelo = Console.ReadLine();
-    Console.Write("Marca: ");
+    Console.WriteLine("Marca: ");
     string marca = Console.ReadLine();
-    Console.Write("Ano: ");
+    Console.WriteLine("Ano: ");
     int ano = int.Parse(Console.ReadLine());
-    Console.Write("Valor da diaria: ");
+    Console.WriteLine("Valor da diaria: ");
     double valordiaria = double.Parse(Console.ReadLine());
 
-    if (op == 1) { 
-    
-        Console.Write("Tipo de Combustivel: ");
+    if (op == 1)
+    {
+        Console.WriteLine("Tipo de combustivel: ");
         string combustivel = Console.ReadLine();
-        Console.Write("Tipo de Cambio: ");
+        Console.WriteLine("Tipo de cambio: ");
         string cambio = Console.ReadLine();
-        Console.Write("Categoria do Veiculo: ");
+        Console.WriteLine("Categoria do veiculo: ");
         string categoria = Console.ReadLine();
 
         veiculos.Add(new Carro(placa, modelo, marca, ano, valordiaria, combustivel, cambio, categoria));
     }
     else if (op == 2)
     {
-        Console.Write("Cilindradas: ");
+        Console.WriteLine("Cilindradas :");
         string cilindradas = Console.ReadLine();
-        Console.Write("Categoria da Moto: ");
-        string categoria = Console.ReadLine();
+        Console.WriteLine("Categoria da moto :");
+        string catmoto = Console.ReadLine();
 
-        veiculos.Add(new Moto(placa, modelo, marca, ano, valordiaria, cilindradas, categoria));
+        veiculos.Add(new Moto(placa, modelo, marca, ano, valordiaria, cilindradas, catmoto));
     }
     else if (op == 3)
     {
-        Console.Write("Quantidade de Eixos: ");
+        Console.WriteLine("Quantidade de eixos: ");
         int eixos = int.Parse(Console.ReadLine());
-        Console.Write("Tipo de Carga: ");
-        string carga = Console.ReadLine();
-        Console.Write("Comprimento (em metros): ");
-        double comprimento = double.Parse(Console.ReadLine());
-
-        veiculos.Add(new Caminhao(placa, modelo, marca, ano, valordiaria, "Caminhão", eixos, carga, comprimento));
+        Console.WriteLine("Tipo de carga(alimento, construcao, animal): ");
+        string tipocarga = Console.ReadLine();
+        Console.WriteLine("Comprimento(em metros): ");
+        int comprimento = int.Parse(Console.ReadLine());
     }
-    else
-    {
-        Console.WriteLine("veiculo invalido");
+    else {
+        Console.WriteLine("Veiculo invalido");
     }
 }
 
 void RealizarLocacao()
 {
-    if (clientes.Count == 0 || veiculos.Count == 0)
+    if (clientes.Count > 0 || veiculos.Count == 0)
     {
-        Console.WriteLine("Nao existe nenhum cliente ou veiculo cadastrado");
+        Console.WriteLine("Nao tem nenhum cliente ou veiculo cadastrado");
         return;
     }
-
     Console.WriteLine("Escolha o cliente: ");
     for (int i = 0; i < clientes.Count; i++)
     {
         Console.WriteLine($"{i + 1} {clientes[i].GetNome()}");
     }
-    int clientescadastrados = (int.Parse(Console.ReadLine()) - 1);
+    int clientescadastrados = int.Parse(Console.ReadLine()) - 1;
 
-    Console.WriteLine("Escolha o veiculo:");
+    Console.WriteLine("Escolha o Veiculo: ");
     for (int i = 0; i < veiculos.Count; i++)
     {
-        Console.WriteLine($"{i + 1}. {veiculos[i].GetModelo()} - {veiculos[i].GetMarca()} - {veiculos[i].GetPlaca()}");
+        Console.WriteLine($"{i + 1} {veiculos[i].GetModelo()} - {veiculos[i].GetMarca()} - {veiculos[i].GetPlaca()}");
     }
-    int veiculoscadastrados = (int.Parse(Console.ReadLine()) - 1);
+    int veiculoscadastrados = int.Parse(Console.ReadLine()) - 1;
 
-    Console.Write("Quantidade de dias da locacao: ");
+    Console.WriteLine("Qnt de dias de locacao: ");
     int dias = int.Parse(Console.ReadLine());
 
     veiculos[veiculoscadastrados].RegistrarLocacao(clientes[clientescadastrados], dias);
@@ -119,37 +114,32 @@ void RealizarLocacao()
 
 void ListarClientes()
 {
-    Console.WriteLine("Clientes cadastrados");
+    Console.WriteLine("\nClientes cadastrados: ");
     foreach (var cliente in clientes)
     {
         Console.WriteLine(cliente.ToString());
-        Console.WriteLine("-----------------------------------");
+        Console.WriteLine("------------");
     }
 }
 
-void ListarVeiculos()
+void ListarVeiculos ()
 {
-    Console.WriteLine("\nVeiculos cadastrados:");
+    Console.WriteLine("\nVeiculos cadastrados: ");
     foreach (var veiculo in veiculos)
     {
         Console.WriteLine(veiculo.ToString());
-        Console.WriteLine("-----------------------------------");
+        Console.WriteLine("------------");
     }
 }
 
-
 int op;
+
 do
 {
     Console.Clear();
-    Console.WriteLine("=== Sistema de Locadora de Carros ===");
-    Console.WriteLine("1. Cadastrar Cliente");
-    Console.WriteLine("2. Cadastrar Veículo");
-    Console.WriteLine("3. Realizar Locação");
-    Console.WriteLine("4. Listar Clientes");
-    Console.WriteLine("5. Listar Veículos");
-    Console.WriteLine("0. Sair");
-    Console.WriteLine("\n Digite sua escolha: ");
+    Console.WriteLine("---Sistema de Locacao de Veiculos---");
+    Console.WriteLine("\n 1 - Cadastrar Cliente:\n2 - Cadastrar Veiculo:\n3 - Realizar Locacao\n4 - Listar Clientes\n5 - Listar Veiculos\n0 - Sair");
+    Console.WriteLine("\n Digite uma opcao: ");
     op = int.Parse(Console.ReadLine());
 
     switch (op)
@@ -172,7 +162,7 @@ do
         case 0:
             break;
         default:
-            Console.WriteLine("opcao errada");
+            Console.WriteLine("opcao invalida");
             break;
     }
 
